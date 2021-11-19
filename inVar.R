@@ -1,66 +1,62 @@
 library(bs4Dash)
+library(shiny)
 
-# --------------
-# Datos del pozo
-# --------------
-pozoBlock <- function(){
+pozo <- function(){
     box(
-        collapsed = TRUE,
-        title = 'Datos del Pozo',
+        title = 'Datos de Pozo',
         width = 12,
-        numericInput(
+        collapsed = TRUE,
+        shiny::numericInput(
             inputId = 'ditr',
-            label = 'DITR:',
+            label = 'DITR: ',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'ditp',
-            label = 'DITP:',
+            label = 'DITP: ',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'phitp',
-            label = 'PHI-TP:',
+            label = 'Phi_TP: ',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'profperf',
-            label = 'Profundidad de Perforacion:',
+            label = 'Profundidad de Perf.: ',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'profbomb',
-            label = 'Profundidad de Bomba:',
+            label = 'Profundidad de Bomba: ',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'ple',
-            label = 'PLE:',
+            label = 'Ple: ',
             value = NULL
         )
     )
 }
 
-# ----------------------
-# Propiedades de Fluidos
-# ----------------------
+# FLUID BOCK
 
-fluidBlock <- function(){
+fluid <- function(){
     box(
         collapsed = TRUE,
         width = 12,
         title = 'Propiedades de Fluido',
-        numericInput(
+        shiny::numericInput(
             inputId = 'gamao',
             label = 'Gamma-o',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'gamaw',
             label = 'Gamma-w',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'gamag',
             label = 'Gamma-g',
             value = NULL
@@ -68,16 +64,14 @@ fluidBlock <- function(){
     )
 }
 
-# ---------------------
-# Datos de Alimentacion
-# ---------------------
+# VOLTAGE CONTROL
 
-feedBlock <- function(){
+voltage <- function(){
     box(
         collapsed = TRUE,
         width = 12,
         title = 'Datos de Alimentacion',
-        numericInput(
+        shiny::numericInput(
             inputId = 'volt',
             label = 'Voltaje',
             value = NULL
@@ -85,71 +79,69 @@ feedBlock <- function(){
     )
 }
 
-# ---------------------------
-# Comportamiento de Afluencia
-# ---------------------------
+# COMPORTAMIENTO DE AFLUENCIA
 
-fluentBlock <- function(){
+fluent <- function(){
     box(
         collapsed = TRUE,
         width = 12,
         title = 'Comportamiento de Afluencia',
-        numericInput(
+        shiny::numericInput(
             inputId = 'pwh',
             label = 'Pwh',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'Pcasting',
             label = 'Pcasting',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'Q',
             label = 'Q',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'fw',
             label = 'Fw',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'pws',
             label = 'Pws',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'ip',
             label = 'IP',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'rga',
             label = 'RGA',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'tsuc',
             label = 'T-Succion',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'qo',
             label = 'qo',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'fo',
             label = 'Fo',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'wor',
             label = 'WOR',
             value = NULL
         ),
-        numericInput(
+        shiny::numericInput(
             inputId = 'bw',
             label = 'Bw',
             value = NULL
