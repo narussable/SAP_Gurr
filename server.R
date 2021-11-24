@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
         profbomb <<- input$profbomb; ple <<- input$ple; pwh <<- input$pwh   
         Pcasating <<- input$Pcasating; tsuc <<- input$tsuc; rga <<- input$rga
         q <<- input$q;  qo <<- input$qo; qw <<- input$qw; volt <<- input$volt     
-        wor <<- input$wor; pip <<- input$pip
+        wor <<- input$wor; pip <<- input$pip; G <<- input$g; n_sep <<- input$nsep
     })
     
     # -----------------------------
@@ -42,12 +42,7 @@ shinyServer(function(input, output) {
         lab <- c('Pwf','DE','Grad','PIP')
         val <- c(pwf  ,de  ,grad  ,pip) 
             
-        return(
-            tibble(
-                Label = lab,
-                Value = val
-            )
-        )
+        return( tibble( Label = lab, Value = val ) )
     })
 
     # -----------------------------
@@ -84,15 +79,10 @@ shinyServer(function(input, output) {
         
         lab <- c('API','Gamma', 'Rs'  , 'Rs_libre','PpL','TpC','Ppr' , 'TPr',
                  'Z'  ,'Bg'   , 'q\'g', 'q_free'  ,'F'  ,'Bo' ,'q\'l', '%')
-        val <- c(api  , gamma , rs    , rsfree    , ppc , tpc , ppr  ,
+        val <- c(api  , gamma , rs    , rsfree    , ppc , tpc , ppr  , tpr,
                  z    , bg    , qg    , qfree     , f   , bo  , ql   , perce)
         
-        return(
-            tibble(
-                Label = lab,
-                Value = val
-            )
-        )
+        return( tibble( Label = lab, Value = val ) )
     })
   
     # -----------------------------
@@ -114,6 +104,9 @@ shinyServer(function(input, output) {
         vsl <<- 6.5*10^(-5)*ql*(bo/(1+wor) + bw*wor/(1+wor))/A
         pg <<- 0.0764*gamag/bg
         pl <<- 62.4*(gamao/(bo*(1+wor)) + gamaw*wor/(bw*(1+wor)))
+        
+        lab <- c('A', 'Vsl', 'pg', 'pl')
+        val <- c(A  , vsl  , pg  , pl  )
         # El Gg solo funciona para ciertos casos 2.
         # G = 0.04
         if( !is.null(G) ){
@@ -121,8 +114,12 @@ shinyServer(function(input, output) {
             nn <<- vb/(vsl+vb)
             qing <<- qg*(1-(nn/100))/5.61
             chi <<- 2000*qing/(3*pip*ql)
+            
+            lab <- c(lab, 'Vb', 'nu_n', 'q_ing', 'chi')
+            val <- c(val, vb  , nn    , qing  , chi  )
         }
         
+        return( tibble( Label = lab, Value = val ) )
     })
     
     # -----------------------------
@@ -133,7 +130,6 @@ shinyServer(function(input, output) {
     output$sec3 <- DT::renderDT({
         if( !but$start )
             return(NULL)
-        
         # El G-n_sep solo funciona para ciertos casos 2.
         # n_sep = 60
         if( !is.null(G) && !is.null(n_sep) ){
@@ -142,8 +138,18 @@ shinyServer(function(input, output) {
             turpin <- 2000*qing3/(3*pip*ql)
         }else
             return(NULL)
+        lab <- c('q_ing','q_fluid','turpin')
+        val <- c(qing3,q_fluid,turpin)
         
+        return( tibble( Label = lab, Value = val ) )
     })
     
+    #output$text <- renderText()
+    
+    output$grph1 <- renderImage({
+        filename <- normalizePath(file.path('./imgs/Graph1.png'))
+        list(src = filename, height="50%", width="50%", align="right")
+        #list( img(src=filename, height="50%", width="50%", align="right") )
+    }, deleteFile = FALSE)
     
 })

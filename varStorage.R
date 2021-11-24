@@ -3,11 +3,13 @@
 bw <- ditr <- ditp <- fo <- fw <- gamao <-NULL
 gamaw <- gamag <- ip <- pws <- phitp <- NULL
 profperf <- profbomb <- ple <- pwh <- qw <- NULL
-Pcasating <- tsuc <- rga <- q <- qo <- pip <- NULL
+Pcasating <- tsuc <- rga <- q <- qo <- NULL
+
+G <- n_sep <- pip <- NULL
 
 # GLOBAL - Calculated Variables
 #   Seccion 1
-pwf <- de <- grad <- pip <- NULL
+pwf <- de <- grad <- NULL
 
 #   Propiedad de los Fluidos
 api <- y <- gamma <- rs <- rsfree <- ppc <- NULL
@@ -15,7 +17,7 @@ tpc <- tpc <- ppr <- tpr <- z <- bg <- qg <- NULL
 qfree <- f <- bo <- ql <- perce <- NULL
 
 #   Seccion 2
-A <- vsl <- pg <- pl <- G <- NULL
+A <- vsl <- pg <- pl <- NULL
 nn <- qing <- chi <- NULL
 
 #   Seccion 3

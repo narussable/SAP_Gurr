@@ -3,6 +3,7 @@ library(bs4Dash)
 library(shiny)
 library(DT)
 
+source('calc_ui.R')
 source('inVar.R')
 
 # Define UI for application that draws a histogram
@@ -10,7 +11,7 @@ ui <- dashboardPage(
     skin = 'black',
     dashboardHeader(
         title = dashboardBrand(
-            title = "Seleccion\nhttps://www.esiatec.ipn.mx/assets/files/esiatec/img/conocenos/mision-vision/banderin-esia.png Bomba",
+            title = "Seleccion Bomba",
             color = "primary",
             image = "https://www.esiatec.ipn.mx/assets/files/esiatec/img/conocenos/mision-vision/banderin-esia.png"
         )
@@ -33,64 +34,13 @@ ui <- dashboardPage(
         
     ),
     dashboardBody(
-        fluidRow(
-           column(
-               width = 6,
-               title = 'Input Vars',
-               
-               box(
-                   title = 'Input Variables',
-                   width = 12,
-                   pozo(),
-                   fluid(),
-                   voltage(),
-                   fluent(),
-                   shiny::actionButton(
-                       inputId = 'start_but',
-                       label = 'Calcular',
-                       icon = icon('calculator')
-                   )
-               )
-           ),
-           column(
-               width = 6,
-               
-               box(
-                   title = 'Calculos',
-                   width = 12,
-                   useShinyalert(),
-                   box(
-                       title = 'Seccion 1',
-                       collapsed = TRUE,
-                       width = 12,
-                       DT::dataTableOutput('sec1')
-                   ),
-                   
-                   box(
-                       title = 'Propiedad de los Fluidos',
-                       width = 12,
-                       collapsed = TRUE,
-                       useShinyalert(),
-                       DT::dataTableOutput('flu')
-                   ),
-                   
-                   box(
-                       title = 'Seccion 2',
-                       width = 12,
-                       collapsed = TRUE,
-                       useShinyalert(),
-                       DT::dataTableOutput('sec2')
-                   ),
-                   
-                   box(
-                       title = 'Seccion 3',
-                       width = 12,
-                       collapsed = TRUE,
-                       useShinyalert(),
-                       DT::dataTableOutput('sec3')
-                   )
-               )
-           )
+        tabItem(
+            tabName = 'calc',
+            shivers(),
+            shivers2()
+        ),
+        tabItem(
+            tabName = 'ref'
         )
     )
 )

@@ -163,7 +163,7 @@ fluent <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'tsuc',
-                    label = 'T-Succion',
+                    label = 'T_suc',
                     value = NULL
                 )
             )
@@ -200,21 +200,38 @@ fluent <- function(){
                 )
             )
         ),
-        fluidRow(
-            column( 6,
-                shiny::numericInput(
-                    inputId = 'bw',
-                    label = 'Bw',
-                    value = NULL
-                )
-            ),
-            column( 6,
-                shiny::numericInput(
-                    inputId = 'pip',
-                    label = 'PIP',
-                    value = NULL
-                )
+        column( 6,
+            shiny::numericInput(
+                inputId = 'bw',
+                label = 'Bw',
+                value = NULL
             )
+        )
+    )
+}
+
+
+# VARIABLES ESPECIALES
+
+special <- function(){
+    box(
+        collapsed = TRUE,
+        width = 12,
+        title = 'Valores especiales',
+        shiny::numericInput(
+            inputId = 'g',
+            label = 'G',
+            value = NULL
+        ),
+        shiny::numericInput(
+            inputId = 'nsep',
+            label = 'n_sep',
+            value = NULL
+        ),
+        shiny::numericInput(
+            inputId = 'pip',
+            label = 'PIP',
+            value = NULL
         )
     )
 }
