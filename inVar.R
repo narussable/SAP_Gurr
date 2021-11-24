@@ -10,14 +10,14 @@ pozo <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'ditr',
-                    label = 'DITR: ',
+                    label = '$$D.I.T.R.:$$ ',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'ditp',
-                    label = 'DITP: ',
+                    label = '$$D.I.T.P.:$$ ',
                     value = NULL
                 )
             )
@@ -26,14 +26,14 @@ pozo <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'phitp',
-                    label = 'Phi_TP: ',
+                    label = '$$\\phi TP:$$',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'profperf',
-                    label = 'Profundidad de Perf.: ',
+                    label = '$$Prof. de Perf.:$$ ',
                     value = NULL
                 )
             )
@@ -42,14 +42,14 @@ pozo <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'profbomb',
-                    label = 'Profundidad de Bomba: ',
+                    label = '$$Prof. de Bomba:$$ ',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'ple',
-                    label = 'Ple: ',
+                    label = '$$Ple:$$',
                     value = NULL
                 )
             )
@@ -66,17 +66,17 @@ fluid <- function(){
         title = 'Propiedades de Fluido',
         shiny::numericInput(
             inputId = 'gamao',
-            label = 'Gamma-o',
+            label = '$$\\gamma_o:$$',
             value = NULL
         ),
         shiny::numericInput(
             inputId = 'gamaw',
-            label = 'Gamma-w',
+            label = '$$\\gamma_w:$$',
             value = NULL
         ),
         shiny::numericInput(
             inputId = 'gamag',
-            label = 'Gamma-g',
+            label = '$$\\gamma_g:$$',
             value = NULL
         )
     )
@@ -91,7 +91,7 @@ voltage <- function(){
         title = 'Datos de Alimentacion',
         shiny::numericInput(
             inputId = 'volt',
-            label = 'Voltaje',
+            label = '$$V_{disp}:$$',
             value = NULL
         )
     )
@@ -108,14 +108,14 @@ fluent <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'pwh',
-                    label = 'Pwh',
+                    label = '$$P_{wh}:$$',
                     value = NULL
                 )
             ),
             column( 6,
                     shiny::numericInput(
                     inputId = 'Pcasting',
-                    label = 'Pcasting',
+                    label = '$$P_{cast}:$$',
                     value = NULL
                 )
             )
@@ -124,14 +124,14 @@ fluent <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'q',
-                    label = 'Q',
+                    label = '$$Q:$$',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'fw',
-                    label = 'Fw',
+                    label = '$$F_w:$$',
                     value = NULL
                 )
             )
@@ -140,14 +140,14 @@ fluent <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'pws',
-                    label = 'Pws',
+                    label = '$$P_{ws}:$$',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'ip',
-                    label = 'IP',
+                    label = '$$IP:$$',
                     value = NULL
                 )
             )
@@ -156,14 +156,14 @@ fluent <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'rga',
-                    label = 'RGA',
+                    label = '$$RGA:$$',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'tsuc',
-                    label = 'T_suc',
+                    label = '$$T_{suc}:$$',
                     value = NULL
                 )
             )
@@ -172,14 +172,14 @@ fluent <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'qo',
-                    label = 'qo',
+                    label = '$$q_0:$$',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'fo',
-                    label = 'Fo',
+                    label = '$$F_0$$',
                     value = NULL
                 )
             )
@@ -188,14 +188,14 @@ fluent <- function(){
             column( 6,
                 shiny::numericInput(
                     inputId = 'qw',
-                    label = 'qw',
+                    label = '$$qw:$$',
                     value = NULL
                 )
             ),
             column( 6,
                 shiny::numericInput(
                     inputId = 'wor',
-                    label = 'WOR',
+                    label = '$$WOR:$$',
                     value = NULL
                 )
             )
@@ -203,7 +203,7 @@ fluent <- function(){
         column( 6,
             shiny::numericInput(
                 inputId = 'bw',
-                label = 'Bw',
+                label = '$$B_w:$$',
                 value = NULL
             )
         )
@@ -220,17 +220,17 @@ special <- function(){
         title = 'Valores especiales',
         shiny::numericInput(
             inputId = 'g',
-            label = 'G',
+            label = '$$G:$$',
             value = NULL
         ),
         shiny::numericInput(
             inputId = 'nsep',
-            label = 'n_sep',
+            label = '$$n_{sep}$$',
             value = NULL
         ),
         shiny::numericInput(
             inputId = 'pip',
-            label = 'PIP',
+            label = '$$PIP:$$',
             value = NULL
         )
     )

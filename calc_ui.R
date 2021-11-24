@@ -49,7 +49,7 @@ shivers <- function(){
                         width = 12,
                         collapsed = TRUE,
                         useShinyalert(),
-                        DT::dataTableOutput('sec2')
+                        withMathJax(DT::dataTableOutput('sec2'))
                     ),
                     
                     box(
@@ -69,13 +69,13 @@ shivers2 <- function(){
     box(
         title = 'Carga Dinamica',
         width = 12,
+        collapsed = TRUE,
         height = '740px',
         fluidRow(
-            conditionalPanel(
-                condition = "input.start_but>1",
-                verbatimTextOutput('ldyn')
-            ),
-            column( 8, plotOutput('grph1') )
+            column( 8, plotOutput('grph1') ),
+            column( 4, 
+                verbatimTextOutput('ldyn')        
+            )
         )
     )
 }

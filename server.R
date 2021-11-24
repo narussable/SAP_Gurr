@@ -40,7 +40,7 @@ shinyServer(function(input, output) {
         grad <<- 0.433*de
 
         lab <- c('Pwf','DE','Grad','PIP')
-        val <- c(pwf  ,de  ,grad  ,pip) 
+        val <- round(c(pwf  ,de  ,grad  ,pip),2)
             
         return( tibble( Label = lab, Value = val ) )
     })
@@ -79,8 +79,8 @@ shinyServer(function(input, output) {
         
         lab <- c('API','Gamma', 'Rs'  , 'Rs_libre','PpL','TpC','Ppr' , 'TPr',
                  'Z'  ,'Bg'   , 'q\'g', 'q_free'  ,'F'  ,'Bo' ,'q\'l', '%')
-        val <- c(api  , gamma , rs    , rsfree    , ppc , tpc , ppr  , tpr,
-                 z    , bg    , qg    , qfree     , f   , bo  , ql   , perce)
+        val <- round(c(api  , gamma , rs    , rsfree    , ppc , tpc , ppr  , tpr,
+                       z    , bg    , qg    , qfree     , f   , bo  , ql   , perce),2)
         
         return( tibble( Label = lab, Value = val ) )
     })
@@ -116,7 +116,7 @@ shinyServer(function(input, output) {
             chi <<- 2000*qing/(3*pip*ql)
             
             lab <- c(lab, 'Vb', 'nu_n', 'q_ing', 'chi')
-            val <- c(val, vb  , nn    , qing  , chi  )
+            val <- round(c(val, vb  , nn    , qing  , chi  ),2)
         }
         
         return( tibble( Label = lab, Value = val ) )
@@ -139,17 +139,16 @@ shinyServer(function(input, output) {
         }else
             return(NULL)
         lab <- c('q_ing','q_fluid','turpin')
-        val <- c(qing3,q_fluid,turpin)
+        val <- round(c(qing3,q_fluid,turpin),2)
         
         return( tibble( Label = lab, Value = val ) )
     })
     
-    #output$text <- renderText()
-    
+    output$ldyn <- renderText( return( paste( "Ldyn = ",round((profbomb*gamao*0.433 + ple - pip)/(gamao*0.433),3), sep = " " ) ) )
+
     output$grph1 <- renderImage({
         filename <- normalizePath(file.path('./imgs/Graph1.png'))
-        list(src = filename, height="50%", width="50%", align="right")
-        #list( img(src=filename, height="50%", width="50%", align="right") )
+        list(src = filename, height="106%", width="98%")
     }, deleteFile = FALSE)
     
 })
