@@ -6,35 +6,53 @@ pozo <- function(){
         title = 'Datos de Pozo',
         width = 12,
         collapsed = TRUE,
-        shiny::numericInput(
-            inputId = 'ditr',
-            label = 'DITR: ',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'ditr',
+                    label = 'DITR: ',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'ditp',
+                    label = 'DITP: ',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'ditp',
-            label = 'DITP: ',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'phitp',
+                    label = 'Phi_TP: ',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'profperf',
+                    label = 'Profundidad de Perf.: ',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'phitp',
-            label = 'Phi_TP: ',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'profperf',
-            label = 'Profundidad de Perf.: ',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'profbomb',
-            label = 'Profundidad de Bomba: ',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'ple',
-            label = 'Ple: ',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'profbomb',
+                    label = 'Profundidad de Bomba: ',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'ple',
+                    label = 'Ple: ',
+                    value = NULL
+                )
+            )
         )
     )
 }
@@ -86,65 +104,117 @@ fluent <- function(){
         collapsed = TRUE,
         width = 12,
         title = 'Comportamiento de Afluencia',
-        shiny::numericInput(
-            inputId = 'pwh',
-            label = 'Pwh',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'pwh',
+                    label = 'Pwh',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                    shiny::numericInput(
+                    inputId = 'Pcasting',
+                    label = 'Pcasting',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'Pcasting',
-            label = 'Pcasting',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'q',
+                    label = 'Q',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'fw',
+                    label = 'Fw',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'Q',
-            label = 'Q',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'pws',
+                    label = 'Pws',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'ip',
+                    label = 'IP',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'fw',
-            label = 'Fw',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'rga',
+                    label = 'RGA',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'tsuc',
+                    label = 'T-Succion',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'pws',
-            label = 'Pws',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'qo',
+                    label = 'qo',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'fo',
+                    label = 'Fo',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'ip',
-            label = 'IP',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'qw',
+                    label = 'qw',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'wor',
+                    label = 'WOR',
+                    value = NULL
+                )
+            )
         ),
-        shiny::numericInput(
-            inputId = 'rga',
-            label = 'RGA',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'tsuc',
-            label = 'T-Succion',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'qo',
-            label = 'qo',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'fo',
-            label = 'Fo',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'wor',
-            label = 'WOR',
-            value = NULL
-        ),
-        shiny::numericInput(
-            inputId = 'bw',
-            label = 'Bw',
-            value = NULL
+        fluidRow(
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'bw',
+                    label = 'Bw',
+                    value = NULL
+                )
+            ),
+            column( 6,
+                shiny::numericInput(
+                    inputId = 'pip',
+                    label = 'PIP',
+                    value = NULL
+                )
+            )
         )
     )
 }
