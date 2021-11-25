@@ -179,10 +179,9 @@ shinyServer(function(input, output) {
       # Ldyn = chp
       tdh <<- 2.31*(ple-ldyn)/de + ldyn + totaldhfr
       etapas <<- tdh / headstor
-      bhpBomb <<- bhpstor*housing*de
+      bhpBomb <<- bhpstage*housing*de
       p_max <<- maxhead * housing * grad
       i <<- inp * bhpBomb/hpnp
-      
       lab <- c('TDH','TotalDHFR','ETAPAS','BHP_Bomb','Pmax','I')
       val <- c(tdh  ,totaldhfr  ,etapas  ,bhpBomb   ,p_max,i)
       return( tibble( Label = lab, Value = val ) )

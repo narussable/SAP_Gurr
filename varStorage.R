@@ -25,7 +25,7 @@ qing3 <- q_fluid <- turpin <- NULL
 
 
 # GLOBAL - BOMB SPECS
-dhfr <- headstor <- bhpstorstor <- maxhead <- NULL
+dhfr <- headstor <- bhpstage <- maxhead <- NULL
 allshaftPow <- shaftDiam <- horBurPre <- hpnp <- NULL
 vplaca <- inp <- voltsurf <- housing <- NULL
 
