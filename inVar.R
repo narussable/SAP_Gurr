@@ -339,14 +339,6 @@ specs <- function(){
             label = 'Calcular',
             icon = shiny::icon('calculator')
         ),
-        shiny::hr(),
-        shiny::hr(),
-        DT::dataTableOutput('specs'),
-        shiny::selectizeInput(
-            inputId = 'calib',
-            label = '$$Calibre:$$',
-            choices = c(1,2,4,6)
-        ),
-        DT::dataTableOutput('specs2')
+        DT::dataTableOutput('specs')
     )
 }

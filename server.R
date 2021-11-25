@@ -30,7 +30,7 @@ shinyServer(function(input, output) {
           but$start <- TRUE
           
           pwf <<- pws - q / ip
-          de <<- (fw*gamaw) + (fo*gamao) 
+          de <<- (fw*gamaw/100) + (fo*gamao) 
           grad <<- 0.433*de
           api <<- 141.5/gamao - 131.5
           y <<- 0.00091*tsuc - 0.0125*api
@@ -81,7 +81,7 @@ shinyServer(function(input, output) {
         if( !but$start )
             return(NULL)
         
-        lab <- c('API','Gamma', 'Rs'  , 'Rs_libre','PpL','TpC','Ppr' , 'TPr',
+        lab <- c('API','Gamma', 'Rs'  , 'Rs_libre','Ppc','TpC','Ppr' , 'TPr',
                  'Z'  ,'Bg'   , 'q\'g', 'q_free'  ,'F'  ,'Bo' ,'q\'l', '%')
         val <- round(c(api  , gamma , rs    , rsfree    , ppc , tpc , ppr  , tpr,
                        z    , bg    , qg    , qfree     , f   , bo  , ql   , perce),2)
@@ -134,8 +134,12 @@ shinyServer(function(input, output) {
         lab <- c('q_ing','q_fluid','turpin')
         val <- round(c(qing3,q_fluid,turpin),2)
         
+        but$start <- FALSE
+        
         return( tibble( Label = lab, Value = val ) )
     })
+    
+    # Segunda Parte ----------------------------------------
     
     output$ldyn <- renderText(return( paste( "Ldyn = ",round((profbomb*gamao*0.433 + ple - pip)/(gamao*0.433),3), sep = " " ) ) )
 
@@ -144,11 +148,9 @@ shinyServer(function(input, output) {
         list(src = filename, height="106%", width="98%")
     }, deleteFile = FALSE)
     
-    # Segunda Parte ----------------------------------------
-    
     observeEvent(input$bombSpecButton,{
       but$start2 <- TRUE
-      
+      browser()
       dhfr <<- input$dhfr; headstor <<- input$headstage; bhpstage <<- input$bhpstage
       maxhead <<- input$maxhead; allshaftPow <<- input$allshaftPow; shaftDiam <<- input$shaftDiam 
       horBurPre <<- input$horBurPre; hpnp <<- input$hpnp; vplaca <<- input$vplaca 
@@ -157,18 +159,14 @@ shinyServer(function(input, output) {
       ldyn <<- round((profbomb*gamao*0.433 + ple - pip)/(gamao*0.433),3)
       totaldhfr <<- dhfr*profbomb/1000
       #
-      tdh <<- 2.31*(ple-ldyn)/de + ldyn + totaldhfr
+      tdh <<- 2.31*(100-20)/de + ldyn + totaldhfr
       etapas <<- tdh / headstor
       #
       bhpBomb <<- bhpstage*housing*de
       p_max <<- maxhead * housing * grad
       i <<- inp * bhpBomb/hpnp
       
-      #cal_filt <- cali %>% filter(calibre==input$calib)
-      #l <<- cal_filt %>% select(long) %>% head(1) %>% first()
-      #res <<- cal_filt %>% select(resiste) %>% head(1) %>% first()
-      #costounit <<- cal_filt %>% select(costperun) %>% head(1) %>% first()
-      p <- p_max/1200
+      
     })
     
     output$specs <- DT::renderDT({
@@ -187,6 +185,28 @@ shinyServer(function(input, output) {
       if(!but$start2)
         return(NULL)
       
+      # Dato a introducir N
+      #
+      #cal_filt <- cali %>% filter(calibre==input$calib)
+      #l <<- cal_filt %>% select(long) %>% head(1) %>% first()
+      #res <<- cal_filt %>% select(resiste) %>% head(1) %>% first()
+      #costounit <<- cal_filt %>% select(costperun) %>% head(1) %>% first()
+      #p <- p_max/1200
+      
+      # cl <<- costounit*profbomb
+      # --------------------------------Taza es una varibale de entrada
+      # p <- taza/1200
+      # pb <<- p*(cl*(1+p)^N)/((1+p)^N-1)
+      # rt <<- profbomb*res*(1+0.00214*(tsuc-77))/1000
+      # dpc <<- 3*i^2*rt/1000
+      # cd <- 720*dpc*ce/100
+      # total <<- pb + cd
+      
+      # Seleccion de swtichboard
+      # UNP es voltaje en placa
+      # vstrvnp <<- (vplaca-4*i*rt)/vplaca
+      # vsurfinal <<- vplaca +  1.732*rt*i
+      # psurf <- sqrt(3)*vsurfinal*i/1000
       
     })
     
