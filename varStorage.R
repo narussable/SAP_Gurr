@@ -35,6 +35,10 @@ p_max <- i <- NULL
 # FINAL DE LOS FINALES
 l <- res <- costounit <- NULL
 
+lc <- taza <- N <- ce <- cl <- p <- pb <- rt <- NULL
+dpc <- cd <- total <- vstrvnp <- vsurfinal <- psurf <- NULL
+
+
 cali <- tibble(
             calibre = c(1,2,4,6),
             resiste = c(0.139,0.17,0.271,0.431),

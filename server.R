@@ -7,7 +7,7 @@ source('varStorage.R')
 
 shinyServer(function(input, output) {
     
-    but <- reactiveValues( start = FALSE, start2 = FALSE )
+    but <- reactiveValues( start = FALSE, start2 = FALSE, start3 = FALSE )
     
     observeEvent(input$start_but, {
         bw <<- input$bw;       ditr <<- input$ditr;   ditp <<- input$ditp     
@@ -134,8 +134,6 @@ shinyServer(function(input, output) {
         lab <- c('q_ing','q_fluid','turpin')
         val <- round(c(qing3,q_fluid,turpin),2)
         
-        but$start <- FALSE
-        
         return( tibble( Label = lab, Value = val ) )
     })
     
@@ -150,7 +148,6 @@ shinyServer(function(input, output) {
     
     observeEvent(input$bombSpecButton,{
       but$start2 <- TRUE
-      browser()
       dhfr <<- input$dhfr; headstor <<- input$headstage; bhpstage <<- input$bhpstage
       maxhead <<- input$maxhead; allshaftPow <<- input$allshaftPow; shaftDiam <<- input$shaftDiam 
       horBurPre <<- input$horBurPre; hpnp <<- input$hpnp; vplaca <<- input$vplaca 
@@ -165,49 +162,56 @@ shinyServer(function(input, output) {
       bhpBomb <<- bhpstage*housing*de
       p_max <<- maxhead * housing * grad
       i <<- inp * bhpBomb/hpnp
-      
-      
     })
     
     output$specs <- DT::renderDT({
       if(!but$start2)
         return(NULL)
       
-      # PLE = whp
-      # Ldyn = chp
-      
       lab <- c('TDH','TotalDHFR','ETAPAS','BHP_Bomb','Pmax','I')
-      val <- c(tdh  ,totaldhfr  ,etapas  ,bhpBomb   ,p_max,i)
+      val <- round(c(tdh  ,totaldhfr  ,etapas  ,bhpBomb   ,p_max,i),3)
+      
       return( tibble( Label = lab, Value = val ) )
     })
     
-    output$specs2 <- DT::renderDT({
-      if(!but$start2)
-        return(NULL)
+    # Tercera parte ----------------------------------------------
+    
+    observeEvent(input$cableCalc,{
+      but$start3 <- TRUE
+        
+      cal_filt <- cali %>% filter(calibre==input$calib)
+      l <<- cal_filt %>% select(long) %>% head(1) %>% first()
+      res <<- cal_filt %>% select(resiste) %>% head(1) %>% first()
+      costounit <<- cal_filt %>% select(costperun) %>% head(1) %>% first()
       
-      # Dato a introducir N
-      #
-      #cal_filt <- cali %>% filter(calibre==input$calib)
-      #l <<- cal_filt %>% select(long) %>% head(1) %>% first()
-      #res <<- cal_filt %>% select(resiste) %>% head(1) %>% first()
-      #costounit <<- cal_filt %>% select(costperun) %>% head(1) %>% first()
-      #p <- p_max/1200
+      lc <<- input$lc
+      taza <<- input$taza
+      N <<- input$N
+      ce <<- input$ce
       
-      # cl <<- costounit*profbomb
-      # --------------------------------Taza es una varibale de entrada
-      # p <- taza/1200
-      # pb <<- p*(cl*(1+p)^N)/((1+p)^N-1)
-      # rt <<- profbomb*res*(1+0.00214*(tsuc-77))/1000
-      # dpc <<- 3*i^2*rt/1000
-      # cd <- 720*dpc*ce/100
-      # total <<- pb + cd
+      cl <<- costounit*lc
+      p <<- taza/1200
+      pb <<- p*(cl*(1+p)^N)/((1+p)^N-1)
+      rt <<- profbomb*res*(1+0.00214*(tsuc-77))/1000
+      dpc <<- 3*i^2*rt/1000
+      cd <<- 720*dpc*ce/100
+      total <<- pb + cd
       
-      # Seleccion de swtichboard
       # UNP es voltaje en placa
-      # vstrvnp <<- (vplaca-4*i*rt)/vplaca
-      # vsurfinal <<- vplaca +  1.732*rt*i
-      # psurf <- sqrt(3)*vsurfinal*i/1000
+      vstrvnp <<- (vplaca-4*i*rt)/vplaca
+      vsurfinal <<- vplaca +  1.732*rt*i
+      psurf <- sqrt(3)*vsurfinal*i/1000
+    })
+    
+    # Seleccion de swtichboard
+    output$nocable <- DT::renderDT({
+      if(!but$start3)
+        return(NULL)
+      browser()
+      lab <- c('Prof. de Asentamiento','Taza de Interes','PB','RT','DPc','Cd','Total','Vstrt/Vnp','Vsurf'  ,'Pot. Switch')
+      val <- c(cl                     ,p                ,pb  ,rt  ,dpc  ,cd  ,total  ,vstrvnp    ,vsurfinal,psurf        )
       
+      return( tibble( Label = lab, Value = val ) )
     })
     
     

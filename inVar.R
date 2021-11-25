@@ -339,6 +339,53 @@ specs <- function(){
             label = 'Calcular',
             icon = shiny::icon('calculator')
         ),
+        shiny::hr(),
+        shiny::hr(),
         DT::dataTableOutput('specs')
+    )
+}
+
+cable <- function(){
+    box(
+        title = 'Seleccion de Cable',
+        width = 12,
+        box(
+            title = 'Input Variables',
+            width = 12,
+            shiny::selectizeInput(
+                inputId = 'calib',
+                label = 'Calibre de cable:',
+                choices = c(1,2,4,6)
+            ),
+            shiny::numericInput(
+                inputId = 'lc',
+                label = '$$Lc:$$',
+                value = NULL
+            ),
+            shiny::numericInput(
+                inputId = 'taza',
+                label = '$$p:$$',
+                value = NULL
+            ),
+            shiny::numericInput(
+                inputId = 'N',
+                label = '$$Exp. Vida:$$',
+                value = NULL
+            ),
+            shiny::numericInput(
+                inputId = 'ce',
+                label = '$$Costo Electricidad:$$',
+                value = NULL
+            ),
+            shiny::actionButton(
+                inputId = 'cableCalc',
+                label = 'Calcular',
+                icon = shiny::icon('calculator')
+            )
+        ),
+        
+        shiny::hr(),
+        shiny::hr(),
+        DT::dataTableOutput('nocable')
     )
 }

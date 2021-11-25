@@ -75,6 +75,7 @@ shivers2 <- function(){
             column(10, plotOutput('grph1') ),
             column(2 , verbatimTextOutput('ldyn') )
         ),
-        specs()
+        specs(),
+        cable()
     )
 }
