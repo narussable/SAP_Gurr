@@ -156,6 +156,19 @@ shinyServer(function(input, output) {
       
       ldyn <<- round((profbomb*gamao*0.433 + ple - pip)/(gamao*0.433),3)
       totaldhfr <<- dhfr*profbomb/1000
+      #
+      tdh <<- 2.31*(ple-ldyn)/de + ldyn + totaldhfr
+      etapas <<- tdh / headstor
+      #
+      bhpBomb <<- bhpstage*housing*de
+      p_max <<- maxhead * housing * grad
+      i <<- inp * bhpBomb/hpnp
+      
+      #cal_filt <- cali %>% filter(calibre==input$calib)
+      #l <<- cal_filt %>% select(long) %>% head(1) %>% first()
+      #res <<- cal_filt %>% select(resiste) %>% head(1) %>% first()
+      #costounit <<- cal_filt %>% select(costperun) %>% head(1) %>% first()
+      p <- p_max/1200
     })
     
     output$specs <- DT::renderDT({
@@ -164,11 +177,7 @@ shinyServer(function(input, output) {
       
       # PLE = whp
       # Ldyn = chp
-      tdh <<- 2.31*(ple-ldyn)/de + ldyn + totaldhfr
-      etapas <<- tdh / headstor
-      bhpBomb <<- bhpstage*housing*de
-      p_max <<- maxhead * housing * grad
-      i <<- inp * bhpBomb/hpnp
+      
       lab <- c('TDH','TotalDHFR','ETAPAS','BHP_Bomb','Pmax','I')
       val <- c(tdh  ,totaldhfr  ,etapas  ,bhpBomb   ,p_max,i)
       return( tibble( Label = lab, Value = val ) )
@@ -177,12 +186,7 @@ shinyServer(function(input, output) {
     output$specs2 <- DT::renderDT({
       if(!but$start2)
         return(NULL)
-      cal_filt <- cali %>% filter(calibre==input$calib)
-      l <<- cal_filt %>% select(long) %>% head(1) %>% first()
-      res <<- cal_filt %>% select(resiste) %>% head(1) %>% first()
-      costounit <<- cal_filt %>% select(costperun) %>% head(1) %>% first()
       
-      p <- p_max/1200
       
     })
     
