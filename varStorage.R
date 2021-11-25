@@ -23,6 +23,15 @@ nn <- qing <- chi <- NULL
 #   Seccion 3
 qing3 <- q_fluid <- turpin <- NULL
 
+
+# GLOBAL - BOMB SPECS
+dhfr <- headstor <- bhpstorstor <- maxhead <- NULL
+allshaftPow <- shaftDiam <- horBurPre <- hpnp <- NULL
+vplaca <- inp <- voltsurf <- housing <- NULL
+
+ldyn <- totaldhfr <- tdh <- etapas <- bhpBomb <- NULL
+p_max <- i <- NULL
+
 checkIfMiss <- function(vect_input){
     return( is.null(vect_input) )
 }

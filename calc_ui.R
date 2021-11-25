@@ -72,10 +72,9 @@ shivers2 <- function(){
         collapsed = TRUE,
         height = '740px',
         fluidRow(
-            column( 8, plotOutput('grph1') ),
-            column( 4, 
-                verbatimTextOutput('ldyn')        
-            )
-        )
+            column(10, plotOutput('grph1') ),
+            column(2 , verbatimTextOutput('ldyn') )
+        ),
+        specs()
     )
 }

@@ -7,7 +7,7 @@ source('varStorage.R')
 
 shinyServer(function(input, output) {
     
-    but <- reactiveValues( start = FALSE )
+    but <- reactiveValues( start = FALSE, start2 = FALSE )
     
     observeEvent(input$start_but, {
         but$start <- TRUE
@@ -144,11 +144,49 @@ shinyServer(function(input, output) {
         return( tibble( Label = lab, Value = val ) )
     })
     
-    output$ldyn <- renderText( return( paste( "Ldyn = ",round((profbomb*gamao*0.433 + ple - pip)/(gamao*0.433),3), sep = " " ) ) )
+    output$ldyn <- renderText(return( paste( "Ldyn = ",round((profbomb*gamao*0.433 + ple - pip)/(gamao*0.433),3), sep = " " ) ) )
 
     output$grph1 <- renderImage({
         filename <- normalizePath(file.path('./imgs/Graph1.png'))
         list(src = filename, height="106%", width="98%")
     }, deleteFile = FALSE)
+    
+    # Segunda Parte ----------------------------------------
+    
+    observeEvent(input$bombSpecButton,{
+      but$start2 <- TRUE
+      
+      dhfr <<- input$dhfr 
+      headstor <<- input$headstage 
+      bhpstage <<- input$bhpstage
+      maxhead <<- input$maxhead
+      allshaftPow <<- input$allshaftPow 
+      shaftDiam <<- input$shaftDiam 
+      horBurPre <<- input$horBurPre 
+      hpnp <<- input$hpnp
+      vplaca <<- input$vplaca 
+      inp <<- input$inp 
+      voltsurf <<- input$voltsurf
+      housing <<- input$housing
+    })
+    
+    output$specs <- DT::renderDT({
+      if(!but$start2)
+        return(NULL)
+      ldyn <<- round((profbomb*gamao*0.433 + ple - pip)/(gamao*0.433),3)
+      totaldhfr <<- dhfr*profbomb/1000
+      # PLE = whp
+      # Ldyn = chp
+      tdh <<- 2.31*(ple-ldyn)/de + ldyn + totaldhfr
+      etapas <<- tdh / headstor
+      bhpBomb <<- bhpstor*housing*de
+      p_max <<- maxhead * housing * grad
+      i <<- inp * bhpBomb/hpnp
+      
+      lab <- c('TDH','TotalDHFR','ETAPAS','BHP_Bomb','Pmax','I')
+      val <- c(tdh  ,totaldhfr  ,etapas  ,bhpBomb   ,p_max,i)
+      return( tibble( Label = lab, Value = val ) )
+    })
+    
     
 })

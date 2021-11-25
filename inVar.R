@@ -235,3 +235,112 @@ special <- function(){
         )
     )
 }
+
+# SPECS INPUTS
+
+specs <- function(){
+    box(
+        title = 'Especificaciones de Bomba',
+        width = 12,
+        fluidRow(
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'dhfr',
+                        label = '$$DHFR:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'headstage',
+                        label = '$$Head/Stage:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'bhpstage',
+                        label = '$$BHP/Stage:$$',
+                        value = NULL
+                    )
+            )
+        ),
+        fluidRow(
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'maxhead',
+                        label = '$$Max_{Head}:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'allshaftPow',
+                        label = '$$Allow. Shaft Pow:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'shaftDiam',
+                        label = '$$Shaft Diameter:$$',
+                        value = NULL
+                    )
+            )
+        ),
+        fluidRow(
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'horBurPre',
+                        label = '$$Housing B. Pressure:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'hpnp',
+                        label = '$$H_{pnp}:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'vplaca',
+                        label = '$$V_{placa}:$$',
+                        value = NULL
+                    )
+            )
+        ),
+        fluidRow(
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'inp',
+                        label = '$$I_{np}:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'voltsurf',
+                        label = '$$V_{surf}:$$',
+                        value = NULL
+                    )
+            ),
+            column( 4,
+                    shiny::numericInput(
+                        inputId = 'housing',
+                        label = '$$Housing:$$',
+                        value = NULL
+                    )
+            )
+        ),
+        shiny::actionButton(
+            inputId = 'bombSpecButton',
+            label = 'Calcular',
+            icon = shiny::icon('calculator')
+        ),
+        shiny::hr(),
+        shiny::hr(),
+        DT::dataTableOutput('specs')
+    )
+}
