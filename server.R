@@ -200,16 +200,15 @@ shinyServer(function(input, output) {
       # UNP es voltaje en placa
       vstrvnp <<- (vplaca-4*i*rt)/vplaca
       vsurfinal <<- vplaca +  1.732*rt*i
-      psurf <- sqrt(3)*vsurfinal*i/1000
+      psurf <<- sqrt(3)*vsurfinal*i/1000
     })
     
     # Seleccion de swtichboard
     output$nocable <- DT::renderDT({
       if(!but$start3)
         return(NULL)
-      browser()
       lab <- c('Prof. de Asentamiento','Taza de Interes','PB','RT','DPc','Cd','Total','Vstrt/Vnp','Vsurf'  ,'Pot. Switch')
-      val <- c(cl                     ,p                ,pb  ,rt  ,dpc  ,cd  ,total  ,vstrvnp    ,vsurfinal,psurf        )
+      val <- round(c(cl                     ,p                ,pb  ,rt  ,dpc  ,cd  ,total  ,vstrvnp    ,vsurfinal,psurf ),2)
       
       return( tibble( Label = lab, Value = val ) )
     })
