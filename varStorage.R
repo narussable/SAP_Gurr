@@ -32,6 +32,16 @@ vplaca <- inp <- voltsurf <- housing <- NULL
 ldyn <- totaldhfr <- tdh <- etapas <- bhpBomb <- NULL
 p_max <- i <- NULL
 
+# FINAL DE LOS FINALES
+l <- res <- costounit <- NULL
+
+cali <- tibble(
+            calibre = c(1,2,4,6),
+            resiste = c(0.139,0.17,0.271,0.431),
+            costperun = c(11.92,10.46,8.71,7.21),
+            long = c(11.92,10.46,8.71,7.21)
+        )
+
 checkIfMiss <- function(vect_input){
     return( is.null(vect_input) )
 }

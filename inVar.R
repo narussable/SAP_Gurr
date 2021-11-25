@@ -341,6 +341,12 @@ specs <- function(){
         ),
         shiny::hr(),
         shiny::hr(),
-        DT::dataTableOutput('specs')
+        DT::dataTableOutput('specs'),
+        shiny::selectizeInput(
+            inputId = 'calib',
+            label = '$$Calibre:$$',
+            choices = c(1,2,4,6)
+        ),
+        DT::dataTableOutput('specs2')
     )
 }
